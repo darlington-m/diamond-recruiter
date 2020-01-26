@@ -1,0 +1,15 @@
+{% extends "::error.html.twig" %}
+
+{% block title %}Diamond Recruiter - Error{% endblock %}
+{% block page_title %}Error{% endblock %}
+
+{% block body %}
+
+    <div class="ex-page-content animated text-center">
+        <h1>403</h1>
+        <h2 class="font-light">The account does not have access to this tenant.</h2><br>
+        <br>
+        <a class="btn btn-success" href="{{ app.request.headers.get('referer') }}"><i class="fa fa-angle-left"></i> Back to Previous Page </a>
+    </div>
+
+{% endblock %}

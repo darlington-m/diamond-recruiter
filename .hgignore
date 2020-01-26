@@ -1,0 +1,10 @@
+
+syntax: regexp
+
+^\.idea/*
+app/config/parameters.yml$
+build/*
+phpunit.xml
+web/bundles/
+vendor/*
+var/*

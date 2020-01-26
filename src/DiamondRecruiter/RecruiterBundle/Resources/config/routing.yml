@@ -1,0 +1,276 @@
+diamond_index:
+    path:     /
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Pages:index, domain: '%base_host%'}
+
+diamond_init_index:
+    path:     /init_index
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Pages:init}
+
+diamond_calendar:
+    path:     /page/calendar
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Pages:calendar, domain: '%base_host%' }
+
+diamond_task_view:
+    path:     /tasks/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Task:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_task_view_all:
+    path:     /{tenant}/tasks
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Task:viewAll, domain: '%base_host%'}
+
+diamond_task_create:
+    path:     /tasks/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Task:create, domain: '%base_host%' }
+
+diamond_task_edit:
+    path:     /tasks/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Task:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_task_delete:
+    path:     /tasks/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Task:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_contact_view:
+    path:     /contacts/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Contact:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_contact_view_all:
+    path:     /contacts
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Contact:viewAll, domain: '%base_host%' }
+
+diamond_contact_create:
+    path:     /contacts/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Contact:create, domain: '%base_host%' }
+
+diamond_contact_edit:
+    path:     /contacts/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Contact:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_contact_delete:
+    path:     /contacts/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Contact:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_candidate_view:
+    path:     /candidates/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Candidate:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_candidate_view_all:
+    path:     /candidates
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Candidate:viewAll, domain: '%base_host%' }
+
+diamond_candidate_create:
+    path:     /candidates/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Candidate:create, domain: '%base_host%' }
+
+diamond_candidate_edit:
+    path:     /candidates/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Candidate:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_candidate_delete:
+    path:     /candidates/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Candidate:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_client_view:
+    path:     /clients/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Client:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_client_view_all:
+    path:     /clients
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Client:viewAll, domain: '%base_host%' }
+
+diamond_client_create:
+    path:     /clients/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Client:create, domain: '%base_host%' }
+
+diamond_client_edit:
+    path:     /clients/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Client:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_client_delete:
+    path:     /clients/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Client:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_vacancy_view:
+    path:     /vacancies/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Vacancy:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_vacancy_view_all:
+    path:     /vacancies
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Vacancy:viewAll, domain: '%base_host%' }
+
+diamond_vacancy_create:
+    path:     /vacancies/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Vacancy:create, domain: '%base_host%' }
+
+diamond_reed_vacancy_search:
+    path:     /vacancies/reed/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Vacancy:searchReed, domain: '%base_host%' }
+
+diamond_reed_vacancy_create:
+    path:     /vacancies/reed/create/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Vacancy:createReed, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_vacancy_edit:
+    path:     /vacancies/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Vacancy:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_vacancy_delete:
+    path:     /vacancies/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Vacancy:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_placement_view:
+    path:     /placements/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Placement:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_placement_view_all:
+    path:     /placements
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Placement:viewAll, domain: '%base_host%' }
+
+diamond_placement_create:
+    path:     /placements/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Placement:create, domain: '%base_host%' }
+
+diamond_placement_edit:
+    path:     /placements/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Placement:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_placement_delete:
+    path:     /placements/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Placement:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_submission_view:
+    path:     /submissions/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Submission:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_submission_view_all:
+    path:     /submissions
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Submission:viewAll, domain: '%base_host%'}
+
+diamond_submission_create:
+    path:     /submissions/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Submission:create, domain: '%base_host%' }
+
+diamond_submission_edit:
+    path:     /submissions/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Submission:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_submission_delete:
+    path:     /submissions/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Submission:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_tenant_view:
+    path:     /admin/tenants/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Tenant:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_tenant_view_all:
+    path:     /admin/tenants
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Tenant:viewAll, domain: '%base_host%' }
+
+diamond_tenant_create:
+    path:     /admin/tenants/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Tenant:create, domain: '%base_host%' }
+
+diamond_tenant_edit:
+    path:     /admin/tenants/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Tenant:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_tenant_delete:
+    path:     /admin/tenants/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:Tenant:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_user_view:
+    path:     /admin/users/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:User:view, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_user_view_all:
+    path:     /admin/users
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:User:viewAll, domain: '%base_host%' }
+
+diamond_user_create:
+    path:     /admin/users/create
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:User:create, domain: '%base_host%' }
+
+diamond_user_edit:
+    path:     /admin/users/edit/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:User:edit, domain: '%base_host%' }
+    requirements: { id: \d+ }
+
+diamond_user_delete:
+    path:     /admin/users/delete/{id}
+    host:     "{tenant}.{domain}"
+    defaults: { _controller: DiamondRecruiterRecruiterBundle:User:delete, domain: '%base_host%' }
+    requirements: { id: \d+ }

@@ -1,0 +1,53 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Diamond Recruiter - {{ tenant.name|capitalize }}{% endblock %}
+{% block page_title %}{{ tenant.name|capitalize }}{% endblock %}
+
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ tenant.name|capitalize }} User List</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Last Login</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for user in users %}
+                                        <tr>
+                                            <td>{{ user.id }}</td>
+                                            <td><a href="{{ path('diamond_user_view', {'id': user.id, tenant:app.user.tenant.name}) }}">{{ user.username }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>{{ user.roles|join(', ') }}</td>
+                                            <td>{{ user.lastlogin | date('H:i d/m/y') }}</td>
+                                            <td>{{ user.enabled ? '<span class="label label-success">Enabled</span>' : '<span class="label label-warning">Disabled</span>' }}</td>
+                                            <td><a href="{{ path('diamond_user_delete', {'id': user.id, tenant:app.user.tenant.name}) }}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

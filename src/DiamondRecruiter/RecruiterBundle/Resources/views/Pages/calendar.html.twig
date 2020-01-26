@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}DiamondRecruiterRecruiterBundle:Pages:calendar{% endblock %}
+{% block page_title %}Calendar{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="col-lg-3" style="height: 100%">
+            <div class="portlet">
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">
+                        Add Event
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-9">
+                <div id='calendar'></div>
+        </div>
+    </div>
+
+{% endblock %}

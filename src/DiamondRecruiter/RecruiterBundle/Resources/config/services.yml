@@ -1,0 +1,22 @@
+services:
+#    diamond_recruiter_recruiter.example:
+#        class: DiamondRecruiter\RecruiterBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    diamond_recruiter_reed_vacancies:
+        class: DiamondRecruiter\RecruiterBundle\Helpers\ReedVacancies
+    diamond_recruiter_reed_vacancy_details:
+        class: DiamondRecruiter\RecruiterBundle\Helpers\ReedVacancyDetails
+    diamond_recruiter_tenant_check:
+        class: DiamondRecruiter\RecruiterBundle\Helpers\TenantCheck
+
+    authentication.handler.login_success_handler:
+        class:  DiamondRecruiter\RecruiterBundle\Helpers\LoginSuccessHandler
+        arguments:  ['@router', '@security.authorization_checker']
+
+parameters:
+    base_host: localhost
+    application: recruiter
+    reed_api_key: 0dcc6c37-0ff0-46ec-b689-8e72c40e2e37
+    reed_api_uri: http://www.reed.co.uk/api/1.0/search
+    image_directory: '%kernel.root_dir%/../web/uploads/images'
+    file_directory: '%kernel.root_dir%/../web/uploads/files'

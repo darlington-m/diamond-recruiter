@@ -1,0 +1,106 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Diamond Recruiter - Reed Vacancy Search{% endblock %}
+{% block page_title %}Create Reed Vacancy{% endblock %}
+
+{% block body %}
+
+    {% if reedVacancies is defined %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-group panel-group-joined" id="accordion-test">
+
+                    {% for vacancy in reedVacancies %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion-test" href="#collapse-{{ vacancy.jobId }}" class="collapsed">
+                                        {{ vacancy.jobTitle }} in {{ vacancy.locationName }} - {{ vacancy.employerName }}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse-{{ vacancy.jobId }}" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+                                    <div class="pull-right btn-group-sm">
+                                        <a href="{{ path('diamond_reed_vacancy_create', {tenant:app.user.tenant.name, id:vacancy.jobId}) }}" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Add as Vacancy">
+                                            <i class="fa fa-add"></i> Add as Vacancy
+                                        </a>
+                                    </div>
+
+                                    <h5 class="media-heading">Job Title: {{ vacancy.jobTitle }}</h5>
+                                    <h5 class="media-heading">Employer: {{ vacancy.employerName }}</h5>
+                                    <h5 class="media-heading">Location: {{ vacancy.locationName }}</h5>
+                                    <h5 class="media-heading">Salary: {{ vacancy.minimumSalary }} - {{ vacancy.maximumSalary }}</h5>
+                                    <h5 class="media-heading">Exp Date: {{ vacancy.expirationDate }}</h5>
+                                    <h5 class="media-heading">URL: <a target="_blank" href="{{ vacancy.jobUrl }}">{{ vacancy.jobUrl }}</a></h5>
+                                    Description {{ vacancy.jobDescription }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h3 class="panel-title">Search Reed Vacancies</h3></div>
+                    <div class="panel-body">
+                            <form action="{{ path('diamond_reed_vacancy_search', {tenant:app.user.tenant.name}) }}" method="post">
+
+                                <div class="form-group">
+                                    <label class="control-label" for="">Keywords</label>
+                                    <input type="text" id="" placeholder="e.g. Software Developer" name="keywords" maxlength="255" required class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="">Location</label>
+                                    <input type="text" placeholder="e.g. Manchester" id="" name="locationName" maxlength="255" required class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="">Distance From Location</label>
+                                    <input type="number" id="" value="10" name="distanceFromLocation" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="">Minimum Salary</label>
+                                    <input type="number" id="" value="10000" name="minimumSalary" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="">Maximum Salary</label>
+                                    <input type="number" id="" value="100000" name="maximumSalary" class="form-control" />
+                                </div>
+                                <div class="checkbox">
+                                    <label class="control-label" for=""><input type="checkbox" id="" name="fullTime" class="checkbox" />FullTime</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="control-label" for=""><input type="checkbox" id="" name="partTime" class="checkbox" />PartTime</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="control-label" for=""><input type="checkbox" id="" name="temp" class="checkbox" />Temporary</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="control-label" for=""><input type="checkbox" id="" name="permanent" class="checkbox" />Permanent</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label class="control-label" for=""><input type="checkbox" id="" name="graduate" class="checkbox" />Graduate</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="">Number of Results</label>
+                                    <input type="number" min="10" max="100"  id="" value="50" name="resultsToTake" class="form-control" />
+                                </div>
+                                <div class="form-group" style="margin-top: 30px">
+                                    <button type="submit" class="btn btn-primary">Search for Vacancies</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

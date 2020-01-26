@@ -1,0 +1,17 @@
+diamond_recruiter_recruiter:
+    resource: "@DiamondRecruiterRecruiterBundle/Resources/config/routing.yml"
+    prefix:   /
+
+diamond_recruiter_user:
+    resource: "@DiamondRecruiterUserBundle/Resources/config/routing.yml"
+    prefix:   /tenant
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

@@ -1,0 +1,15 @@
+{% extends "::error.html.twig" %}
+
+{% block title %}Diamond Recruiter - Error{% endblock %}
+{% block page_title %}Error{% endblock %}
+
+{% block body %}
+
+    <div class="ex-page-content animated text-center">
+        <h1>500</h1>
+        <h2 class="font-light">Something is broken. Please let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</h2><br>
+        <br>
+        <a class="btn btn-success" href="{{ app.request.headers.get('referer') }}"><i class="fa fa-angle-left"></i> Back to Previous Page </a>
+    </div>
+
+{% endblock %}

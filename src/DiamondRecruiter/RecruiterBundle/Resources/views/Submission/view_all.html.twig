@@ -1,0 +1,101 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Diamond Recruiter - Submission{% endblock %}
+{% block page_title %}Submissions{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-t-0">
+                    <div class="col-md-10">
+                        <form action="{{ path('diamond_submission_view_all', {tenant:app.user.tenant.name}) }}" method="post">
+                            <div class="input-group">
+                                <input type="text" id="" name="search" class="form-control" placeholder="Search for submissions">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="{{ path('diamond_submission_create', {tenant: app.user.tenant.name}) }}">
+                            <button style="width: 100%" class="btn btn-default pull-right">Add New</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End row -->
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portlet"><!-- /primary heading -->
+                <div id="portlet2" class="panel-collapse collapse in">
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date Submitted</th>
+                                    <th>Vacancy</th>
+                                    <th>Client</th>
+                                    <th>Candidate</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for submission in submissions %}
+                                    <tr>
+                                        <td>{{ submission.title }}</td>
+                                        <td>{{ submission.datesubmitted|date('d/m/Y') }}</td>
+                                        <td>
+                                            <a href="{{ path('diamond_vacancy_view', {tenant: app.user.tenant.name, id:submission.vacancy.id}) }}">
+                                                {{ submission.vacancy.title }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('diamond_client_view', {tenant: app.user.tenant.name, id:submission.client.id}) }}">
+                                                {{ submission.client.name }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('diamond_candidate_view', {tenant: app.user.tenant.name, id:submission.candidate.id}) }}">
+                                                {{ submission.candidate.fullname }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group-sm">
+                                                <a href="{{ path('diamond_submission_view', {tenant: app.user.tenant.name, id:submission.id}) }}" class="btn btn-sm btn-success tooltips" data-submission="top" data-toggle="tooltip" data-original-title="View">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="{{ path('diamond_submission_edit', {tenant: app.user.tenant.name, id:submission.id}) }}" class="btn btn-warning tooltips" data-submission="top" data-toggle="tooltip" data-original-title="Edit">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="{{ path('diamond_submission_delete', {tenant: app.user.tenant.name, id:submission.id}) }}" class="btn btn-danger tooltips" data-submission="top" data-toggle="tooltip" data-original-title="Delete">
+                                                    <i class="fa fa-close"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if search is not defined %}
+        <div>
+            {{ knp_pagination_render(submissions) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

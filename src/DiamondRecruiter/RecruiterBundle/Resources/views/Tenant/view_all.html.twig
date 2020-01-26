@@ -1,0 +1,87 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Diamond Recruiter - Tenants{% endblock %}
+{% block page_title %}Tenants{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-t-0">
+                    <div class="col-md-10">
+                        <form action="{{ path('diamond_tenant_view_all', {tenant:app.user.tenant.name}) }}" method="post">
+                            <div class="input-group">
+                                <input type="text" id="" name="search" class="form-control" placeholder="Search for tenants">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="{{ path('diamond_tenant_create', {tenant: app.user.tenant.name}) }}">
+                            <button style="width: 100%" class="btn btn-default pull-right">Add New</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End row -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <div class="portlet">
+                <div id="portlet2" class="panel-collapse collapse in">
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tenant Name</th>
+                                    <th>Date Created</th>
+                                    <th>User Count</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for tenant in tenants %}
+                                <tr>
+                                    <td>{{ tenant.id }}</td>
+                                    <td><a href="{{ path('diamond_tenant_view', {tenant:app.user.tenant.name, id:tenant.id}) }}">{{ tenant.name }}</a></td>
+                                    <td>{{ tenant.timestamp | date('H:i d/m/y') }}</td>
+                                    <td>{{ tenant.users|length }}</td>
+                                    <td><span class="label label-success">Active</span></td>
+                                    <td>
+                                        <div class="pull-right btn-group-sm">
+                                            <a href="{{ path('diamond_tenant_edit', {tenant: app.user.tenant.name, id:tenant.id}) }}" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href="{{ path('diamond_tenant_delete', {tenant: app.user.tenant.name, id:tenant.id}) }}" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if search is not defined %}
+        <div>
+            {{ knp_pagination_render(tenants) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

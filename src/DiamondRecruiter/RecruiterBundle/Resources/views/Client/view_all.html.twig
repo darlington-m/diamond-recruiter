@@ -1,0 +1,112 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}DiamondRecruiterRecruiterBundle:Pages:index{% endblock %}
+{% block page_title %}Clients{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-t-0">
+                    <div class="col-md-10">
+                        <form action="{{ path('diamond_client_view_all', {tenant:app.user.tenant.name}) }}" method="post">
+                            <div class="input-group">
+                                <input type="text" id="" name="search" class="form-control" placeholder="Search for clients">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="{{ path('diamond_client_create', {tenant: app.user.tenant.name}) }}">
+                            <button  style="width: 100%" class="btn btn-default pull-right">Add New</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portlet"><!-- /primary heading -->
+                <div id="portlet2" class="panel-collapse collapse in">
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Date Created</th>
+                                    <th>Contacted</th>
+                                    <th>Customer</th>
+                                    <th>Status</th>
+                                    <th>Vacancies</th>
+                                    <th>Submissions</th>
+                                    <th>Placements</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for client in clients %}
+                                <tr>
+                                    <td>{{ client.name }}</td>
+                                    <td>{{ client.datecreated|date('d/m/Y') }}</td>
+                                    <td>
+                                        {% if client.contacted %}
+                                            <span class="label label-success">Yes</span>
+                                        {% else %}
+                                            <span class="label label-danger">No</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if client.iscustomer %}
+                                            <span class="label label-success">Yes</span>
+                                        {% else %}
+                                            <span class="label label-danger">No</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if client.isactive %}
+                                            <span class="label label-success">Active</span>
+                                        {% else %}
+                                            <span class="label label-danger">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ client.vacancies|length }}</span></td>
+                                    <td>{{ client.submissions|length }}</span></td>
+                                    <td>{{ client.placements|length }}</td>
+                                    <td>
+                                        <div class="btn-group-sm">
+                                            <a href="{{ path('diamond_client_view', {tenant: app.user.tenant.name, id:client.id}) }}" class="btn btn-sm btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="View">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{{ path('diamond_client_edit', {tenant: app.user.tenant.name, id:client.id}) }}" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href="{{ path('diamond_client_delete', {tenant: app.user.tenant.name, id:client.id}) }}" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                                <i class="fa fa-close"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if search is not defined %}
+        <div>
+            {{ knp_pagination_render(clients) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

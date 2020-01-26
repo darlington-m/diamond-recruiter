@@ -1,0 +1,80 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Diamond Recruiter -Contacts{% endblock %}
+{% block page_title %}Contacts{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body p-t-0">
+                    <div class="col-md-10">
+                        <form action="{{ path('diamond_contact_view_all', {tenant:app.user.tenant.name}) }}" method="post">
+                            <div class="input-group">
+                                <input type="text" id="" name="search" class="form-control" placeholder="Search for contacts">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="{{ path('diamond_contact_create', {tenant: app.user.tenant.name}) }}">
+                            <button style="width: 100%" class="btn btn-default pull-right">Add New</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End row -->
+
+    <div class="row">
+
+        {% for contact in contacts %}
+
+        <div class="col-sm-6">
+            <div class="panel">
+                <div class="panel-body p-t-10">
+                    <div class="media-main">
+                        <a class="pull-left" href="#">
+                            <img class="thumb-lg img-circle bx-s" src="{{ asset('uploads/images/' ~ contact.avatar) | imagine_filter('my_thumb') }}" alt="">
+                        </a>
+                        <div class="pull-right btn-group-sm">
+                            <a href="{{ path('diamond_contact_edit', {tenant: app.user.tenant.name, id:contact.id}) }}" class="btn btn-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                            <a href="{{ path('diamond_contact_delete', {tenant: app.user.tenant.name, id:contact.id}) }}" class="btn btn-danger text-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h4>{{ contact.name }}</h4>
+                            <p class="text-muted">{{ contact.phone }}</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr/>
+                    <ul class="social-links list-inline p-b-10">
+                        <li>
+                            <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="maito:{{ contact.email }}" data-original-title="Message"><i class="fa fa-envelope-o"></i></a>
+                        </li>
+                        <li>
+                            <a title="" target="_blank" data-placement="top" data-toggle="tooltip" class="tooltips" href="{{ contact.linkedin }}" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div> <!-- panel-body -->
+            </div> <!-- panel -->
+        </div> <!-- end col -->
+        {% endfor %}
+
+    </div> <!-- End row -->
+
+    {% if search is not defined %}
+        <div>
+            {{ knp_pagination_render(contacts) }}
+        </div>
+    {% endif %}
+
+{% endblock %}

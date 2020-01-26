@@ -1,0 +1,4 @@
+services:
+#    diamond_recruiter_user.example:
+#        class: DiamondRecruiter\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

@@ -1,0 +1,83 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Diamond Recruiter - Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-android-checkbox-outline text-success"></i>
+                <h2 class="m-0 counter">{{ user.placements|length }}</h2>
+                <div>Placements</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-android-open text-warning"></i>
+                <h2 class="m-0 counter">{{ user.submissions|length }}</h2>
+                <div>Submissions</div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-clipboard text-purple"></i>
+                <h2 class="m-0 counter">{{ user.vacancies|length }}</h2>
+                <div>Vacancies</div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-person-stalker text-primary"></i>
+                <h2 class="m-0 counter">{{ user.candidates|length }}</h2>
+                <div>Candidates</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+
+        <div class="col-lg-6">
+            <div class="portlet"><!-- /primary heading -->
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">
+                        Yearly Placement Report
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="portlet2" class="panel-collapse collapse in">
+                    <div class="portlet-body">
+                        <div id="morris-area" style="height: 320px;"></div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6">
+            <div class="portlet">
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">
+                        Client Conversion Report
+                    </h3>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="portlet1" class="panel-collapse collapse in">
+                    <div class="portlet-body">
+                        <div id="morris-donut" style="height: 320px;"></div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
